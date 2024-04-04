@@ -8,8 +8,10 @@ setwd("LEA_analyses")
 library(LEA)
 
 #convert my VCF with population SNPS to the lfmm and geno formats that LEA needs
-vcf2lfmm("populations.snps.vcf", "pere_genotypes.lfmm")
+output = vcf2lfmm("populations.snps.vcf", "pere_genotypes.lfmm")
 vcf2geno("populations.snps.vcf","pere_genotypes.geno")
 
 pc = pca("populations.snps.lfmm", scale = TRUE)
 tw = tracy.widom(pc)
+
+?vcf2lfmm()
