@@ -56,7 +56,7 @@ barchart(project, K = 4, run = best,
          ylab = "Ancestry proportions",
          main = "Ancestry matrix") -> bp
 axis(1, at = 1:length(bp$order),
-     labels = bp$order, las=1,aqw
+     labels = bp$order, las=1,
      cex.axis = .4)
 
 # Genome scan for selection: population differentiation tests
@@ -68,3 +68,59 @@ pvalues = p$pvalues
 par(mfrow = c(2,1))
 hist(pvalues, col = "orange")
 plot(-log10(pvalues), pch = 19, col = "blue", cex = .5)
+
+# creation of a genotype matrix with missing genotypes
+dat = as.numeric(tutorial.R)
+dat[sample(1:length(dat), 100)] <- 9
+dat <- matrix(dat, nrow = 50, ncol = 400)
+write.lfmm(dat, "genoM.lfmm")
+
+project.missing = snmf("genoM.lfmm", K = 4,
+                       entropy = TRUE, repetitions = 10,
+                       project = "new")
+
+# select the run with the lowest cross-entropy value
+best = which.min(cross.entropy(project.missing, K = 4))
+
+# Impute the missing genotypes
+impute(project.missing, "genoM.lfmm",
+       method = 'mode', K = 4, run = best)
+dat.imp = read.lfmm("genoM.lfmm_imputed.lfmm")
+mean( tutorial.R[dat == 9] == dat.imp[dat == 9] )
+
+
+#Running environmental analysis
+# Runs with K = 6 using 5 repetitions.
+project = NULL
+project = lfmm("genotypes.lfmm",
+               "gradients.env",
+               K = 6,
+               repetitions = 5,
+               project = "new")
+
+# compute adjusted p-values
+p = lfmm.pvalues(project, K = 6)
+pvalues = p$pvalues
+
+# GEA significance test
+par(mfrow = c(2,1))
+hist(pvalues, col = "lightblue")
+plot(-log10(pvalues), pch = 19, col = "blue", cex = .7)
+
+for (alpha in c(.05,.1,.15,.2)) {
+  # expected FDR
+  print(paste("Expected FDR:", alpha))
+  L = length(pvalues)
+  # return a list of candidates with expected FDR alpha.
+  # Benjamini-Hochberg's algorithm:
+  w = which(sort(pvalues) < alpha * (1:L) / L)
+  candidates = order(pvalues)[w]
+  # estimated FDR and True Positive Rate
+  Lc = length(candidates)
+  estimated.FDR = sum(candidates <= 350)/Lc
+  print(paste("Observed FDR:",
+              round(estimated.FDR, digits = 2)))
+  estimated.TPR = sum(candidates > 350)/50
+  print(paste("Estimated TPR:",
+              round(estimated.TPR, digits = 2)))
+}
