@@ -1,5 +1,0 @@
-new("lfmmClass", directory = "K6/run3/", lfmmClass.file = "genotypes_r3_s1.6.lfmmClass", 
-    K = 6L, d = 1L, Niter = 10000L, burn = 5000L, CPU = 1L, seed = 1264640744L, 
-    missing.data = FALSE, all = FALSE, run = 3L, epsilon.noise = 0.001, 
-    epsilon.b = 1000, random.init = TRUE, zscore.file = "genotypes_r3_s1.6.zscore", 
-    deviance = 20000.3713628368, DIC = 19953.2932597976)
