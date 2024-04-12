@@ -28,6 +28,8 @@ all <- rename(all, PERE_mapped_prop = mapped_percent,
               PERE_QC_failed_reads = QC_failed_reads)
 all <- merge(all, popmap, by="sample_ID")
 
+#write.csv(all, "summarized_mapping_data.csv")
+
 # Visualize
 
   # PERE alignments
