@@ -1,0 +1,6 @@
+new("pcaProject", projDir = "/Users/pcnorthing/Documents/grad_school/pere_lg/pere_lg/LEA/", 
+    pcaDir = "populations.snps.lfmm_imputed.pca/", n = 261L, 
+    L = 58L, K = 58L, center = TRUE, scale = TRUE, pcaProject.file = "populations.snps.lfmm_imputed.pcaProject", 
+    input.file = "populations.snps.lfmm_imputed.lfmm", eigenvalue.file = "populations.snps.lfmm_imputed.eigenvalues", 
+    eigenvector.file = "populations.snps.lfmm_imputed.eigenvectors", 
+    sdev.file = "populations.snps.lfmm_imputed.sdev", projection.file = "populations.snps.lfmm_imputed.projections")
