@@ -10,10 +10,10 @@ library(hierfstat)
 library(ade4)
 
 #Read in SNP data from STACKS
-gind <- read.genepop("adegenet/populations.snps.gen") #creates a genind object from a genopop input file
-gpop <- genind2genpop(gind) #creates a genpop object from a genind object
+#gind <- read.genepop("adegenet/populations.snps.gen") #creates a genind object from a genopop input file
+#gpop <- genind2genpop(gind) #creates a genpop object from a genind object
 
-# test with structure data format instead
+# Lets use Structure data format instead
 gind_test <- read.structure("adegenet/populations.stru")
 gpop_test <- genind2genpop(gind_test)
 
@@ -96,33 +96,16 @@ colorplot(pca1$li, pca1$li, transp=TRUE, cex=3, xlab="PC 1", ylab="PC 2")
 title("PCA of PERE dataset\naxes 1-2")
 abline(v=0,h=0,col="grey", lty=2)
 
-# Generate a PCA of the SNP data
-X <- tab(gind, freq = TRUE, NA.method="mean") #replace NA's with the mean allele frequency, generate a table called 'X' for PCA
-pca1 <- dudi.pca(X, scannf = F, scale = F)
-barplot(pca1$eig[1:50], main = "PCA eigenvalues", col = heat.colors(50))
-temp <- as.integer(pop(gind))
-myCol <- transp(c("blue","red"),.7)[temp]
-myPch <- c(2,4)[temp]
 
-plot(pca1$li, col=myCol, cex=5, pch=myPch)
+# Discriminant Analysis of PC ---------------------------------------------
+grp <- find.clusters(gind_test, max.n.clust=20)
+table(pop(gind_test), grp$grp)
 
-abline(h=0,v=0,col="grey",lty=2)
-s.arrow(pca1$c1*.5, add.plot=TRUE)
-legend("topright", pch=c(15,17), col=transp(c("blue","red"),.7),
-       leg=c("Group A","Group B"), pt.cex=2)
+table.value(table(pop(gind_test), grp$grp), col.lab=paste("inf", 1:6),
+            row.lab=paste("ori", 1:6))
 
+dapc1 <- dapc(gind_test, grp$grp)
+scatter(dapc1, posi.da="bottomright", bg="white", pch=17:22)
 
-pop(g) = sapply(strsplit(indNames(g), "_"), function(g){g[1]})
-
-g.pca = dudi.pca(g, scannf=FALSE)
-
-grp <- find.clusters(g, max.n.clust=40)
-
-dapc1 <- dapc(g, grp$grp)
-scatter(dapc1)
-
-?dudi.pca
-
-?read.genepop
-
-?genind
+scatter(dapc1, scree.da=FALSE, bg="white", pch=20,  cell=0, cstar=0, col=myCol, solid=.4,
+        cex=3,clab=0, leg=TRUE, txt.leg=paste("Cluster",1:14))
