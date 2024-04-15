@@ -36,22 +36,22 @@ plot(tw$percentage, pch = 19, col = "darkblue", cex = .8)
 # CPU = 4 is the number of CPU used (hidden input)
 project = NULL
 project = snmf("LEA/populations.snps.geno",
-               K = 1:9,
+               K = 1:10,
                entropy = TRUE,
                repetitions = 10,
                project = "new")
 plot(project, col = "blue", pch = 19, cex = 1.2)
 
 
-best = which.min(cross.entropy(project, K = 9))
-my.colors <- c("tomato", "lightblue",
-               "olivedrab", "gold", "lavender", "grey", "pink", "seagreen", "black")
+best = which.min(cross.entropy(project, K = 2))
+my.colors <- c("tomato", "lightblue")
+               #"olivedrab", "gold", "lavender", "grey", "pink", "seagreen", "black")
 barchart(project, K = 9, run = best,
          border = NA, space = 0,
          col = my.colors,
          xlab = "Individuals",
          ylab = "Ancestry proportions",
-         main = "Ancestry matrix") -> bp
+         main = "Ancestry matrix", sort.by.Q = T) -> bp
 axis(1, at = 1:length(bp$order),
      labels = bp$order, las=1,
      cex.axis = .4)

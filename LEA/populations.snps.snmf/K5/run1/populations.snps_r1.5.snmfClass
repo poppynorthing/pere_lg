@@ -1,6 +1,6 @@
 new("snmfClass", directory = "K5/run1/", snmfClass.file = "populations.snps_r1.5.snmfClass", 
-    K = 5L, run = 1L, CPU = 1L, seed = 1230987135L, alpha = 10, 
+    K = 5L, run = 1L, CPU = 1L, seed = 1602834464L, alpha = 10, 
     percentage = 0.05, I = 0L, iterations = 200L, entropy = TRUE, 
-    tolerance = 1e-05, crossEntropy = 0.706482386693834, ploidy = 2L, 
+    tolerance = 1e-05, crossEntropy = 0.583282017575072, ploidy = 2L, 
     Q.input.file = "", Q.output.file = "populations.snps_r1.5.Q", 
     G.output.file = "populations.snps_r1.5.G")

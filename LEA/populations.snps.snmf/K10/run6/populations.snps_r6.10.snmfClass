@@ -1,0 +1,6 @@
+new("snmfClass", directory = "K10/run6/", snmfClass.file = "populations.snps_r6.10.snmfClass", 
+    K = 10L, run = 6L, CPU = 1L, seed = 1711609060L, alpha = 10, 
+    percentage = 0.05, I = 0L, iterations = 200L, entropy = TRUE, 
+    tolerance = 1e-05, crossEntropy = 0.337979486287819, ploidy = 2L, 
+    Q.input.file = "", Q.output.file = "populations.snps_r6.10.Q", 
+    G.output.file = "populations.snps_r6.10.G")
