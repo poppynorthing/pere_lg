@@ -14,8 +14,12 @@ library(ade4)
 #gpop <- genind2genpop(gind) #creates a genpop object from a genind object
 
 # Lets use Structure data format instead
-gind_test <- read.structure("adegenet/populations.stru")
-gpop_test <- genind2genpop(gind_test)
+gind <- read.structure("adegenet/populations_final.stru")
+gpop <- genind2genpop(gind_test)
+
+
+tab <- read.table("adegenet/populations_final.stru")
+gind <- df2genind(tab, ploidy = 2, ncode = 1)
 
 gind_sum <- summary(gind_test)
 gpop_sum <- summary(gpop_test)
