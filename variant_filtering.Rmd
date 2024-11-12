@@ -1,0 +1,13 @@
+# Raw Variant Filtering
+### Author: Poppy C. Northing
+
+
+I called <b>X number</b> variants using BCFtools vX from 243 samples of <i>P. recurvata</i>. 
+
+```{r}
+# Load libraries
+library(tidyverse)
+
+# Loading in Data
+
+```

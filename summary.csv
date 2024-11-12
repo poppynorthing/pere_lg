@@ -1,7 +1,0 @@
-"","alignment_file_name"," total_reads","mapped_proportion"," mapped_reads","QC_failed_reads"
-"","Length:294        ","Min.   :      76  ","Min.   :0.0000  ","Min.   :       0  ","Min.   :     0.0  "
-"","Class :character  ","1st Qu.:    1947  ","1st Qu.:0.4290  ","1st Qu.:     666  ","1st Qu.:   853.5  "
-"","Mode  :character  ","Median :   16366  ","Median :0.9413  ","Median :   15374  ","Median :  1794.0  "
-"",NA,"Mean   :  729145  ","Mean   :0.7089  ","Mean   :  718355  ","Mean   : 10789.9  "
-"",NA,"3rd Qu.:  335872  ","3rd Qu.:0.9880  ","3rd Qu.:  309421  ","3rd Qu.:  4954.8  "
-"",NA,"Max.   :21906103  ","Max.   :1.0000  ","Max.   :21827836  ","Max.   :438420.0  "
